@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaderboard</title>
+    <style>
+        #leaderboard {
+            text-align: center;
+            margin: 20px;
+        }
+        .score-box {
+            display: inline-block;
+            width: 100px;
+            font-size: 24px;
+            margin: 10px;
+        }
+        #score {
+            background-color: #f0f0f0;
+        }
+        button {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div id="leaderboard">
+        <h1>Leaderboard</h1>
+        <div class="score-box">
+            <label>MIN</label>
+            <div id="min">0</div>
+        </div>
+        <div class="score-box">
+            <label>SCORE</label>
+            <div id="score">0</div>
+        </div>
+        <div class="score-box">
+            <label>MAX</label>
+            <div id="max">0</div>
+        </div>
+        <br>
+        <div>
+            <button onclick="addNumber(1)">1</button>
+            <button onclick="addNumber(2)">2</button>
+            <button onclick="addNumber(3)">3</button>
+            <button onclick="addNumber(4)">4</button>
+            <button onclick="addNumber(5)">5</button>
+            <button onclick="addNumber(6)">6</button>
+            <button onclick="addNumber(7)">7</button>
+            <button onclick="addNumber(8)">8</button>
+            <button onclick="addNumber(9)">9</button>
+            <button onclick="addNumber(0)">0</button>
+        </div>
+        <br>
+        <button onclick="enterScore()">ENTER</button>
+    </div>
+
+    <script>
+        let currentScore = '';
+        let minScore = Infinity;
+        let maxScore = -Infinity;
+
+        function addNumber(number) {
+            currentScore += number;
+            document.getElementById('score').textContent = currentScore;
+        }
+
+        function enterScore() {
+            const score = parseInt(currentScore);
+            if (!isNaN(score)) {
+                if (score < minScore) {
+                    minScore = score;
+                    document.getElementById('min').textContent = minScore;
+                }
+                if (score > maxScore) {
+                    maxScore = score;
+                    document.getElementById('max').textContent = maxScore;
+                }
+                currentScore = '';
+                document.getElementById('score').textContent = currentScore;
+            }
+        }
+    </script>
+</body>
+</html>
